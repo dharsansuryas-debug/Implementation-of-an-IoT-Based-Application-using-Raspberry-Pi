@@ -24,14 +24,11 @@ To implement an IoT-based environmental monitoring application using Raspberry P
 ---
 
 # Circuit Diagram
+<img width="1536" height="1024" alt="WhatsApp Image 2026-09-21 at 13 30 41" src="https://github.com/user-attachments/assets/8b9edd85-9949-4e1f-b2db-9c5a2219a095" />
 
 ---
 
-**To upload Wokwi circuit diagram**
 
----
-
-# Circuit Connections
 
 
 
@@ -134,9 +131,62 @@ The LED is used as a local status indicator. It turns ON when the measured tempe
 ---
 
 # Program
+import time
+import dht
+from machine import Pin
 
+# DHT22 connected to GP15
+sensor = dht.DHT22(Pin(15))
+
+# LED connected to GP2
+led = Pin(2, Pin.OUT)
+
+print("==============================")
+print(" IoT Environmental Monitoring")
+print(" Raspberry Pi Pico W")
+print("==============================")
+
+while True:
+    try:
+        # Read DHT22
+        sensor.measure()
+
+        temperature = sensor.temperature()
+        humidity = sensor.humidity()
+
+        # Display sensor data
+        print("Temperature: {:.1f} °C".format(temperature))
+        print("Humidity: {:.1f} %".format(humidity))
+
+        # HIGH TEMPERATURE
+        if temperature > 30:
+            print("WARNING: HIGH TEMPERATURE!")
+            print("LED BLINKING...")
+
+            # Blink LED
+            led.on()
+            time.sleep(0.5)
+
+            led.off()
+            time.sleep(0.5)
+
+        # NORMAL TEMPERATURE
+        else:
+            led.off()
+            print("Temperature Status: NORMAL")
+
+            # Wait before next reading
+            time.sleep(2)
+
+        print("------------------------------")
+
+    except Exception as e:
+        led.off()
+        print("Sensor error:", e)
+        time.sleep(2)
 
 # Observation
+<img width="1600" height="1234" alt="WhatsApp Image 2026-09-21 at 13 35 32" src="https://github.com/user-attachments/assets/6fefc7e4-b858-4f59-b7a1-b1c444bd088f" />
 
 
 
