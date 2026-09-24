@@ -188,6 +188,7 @@ while True:
 # Observation
 <img width="1600" height="1234" alt="WhatsApp Image 2026-09-21 at 13 35 32" src="https://github.com/user-attachments/assets/6fefc7e4-b858-4f59-b7a1-b1c444bd088f" />
 
+<img width="1599" height="1300" alt="image" src="https://github.com/user-attachments/assets/d76592df-2f40-487f-9e7e-200c7d9d4463" />
 
 
 # Result
